@@ -11,9 +11,9 @@
   <url>http://maven.apache.org</url>
 
  <modules>
-  	<module>disruptor-demo</module>
-    <module>learnTech-disruptor-demo</module>
-  </modules>
+    <module>learnTech-spring-batch</module>
+    <module>learnTech-disruptor</module>
+ </modules>
  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
