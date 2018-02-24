@@ -13,6 +13,7 @@
  <modules>
     <module>learnTech-spring-batch</module>
     <module>learnTech-disruptor</module>
+    <module>learnTech-elastic-job</module>
  </modules>
  
   <properties>
