@@ -1,4 +1,4 @@
-package org.disrupto.demo;
+package org.disruptor;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
