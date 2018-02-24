@@ -1,4 +1,4 @@
-package org.learnTech.spring.batch;
+package com.fclassroom.cloud;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
