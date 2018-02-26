@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
 
  <modules>
+    <module>learnTech-axonframework</module>
     <module>learnTech-forkJoin</module>
     <module>learnTech-spring-batch</module>
     <module>learnTech-disruptor</module>
