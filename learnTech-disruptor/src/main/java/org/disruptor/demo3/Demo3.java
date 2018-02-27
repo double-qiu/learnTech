@@ -35,6 +35,7 @@ public class Demo3 {
         }, bufferSize, executor, ProducerType.SINGLE, new BusySpinWaitStrategy());  
           
         //使用disruptor创建消费者组C1,C2  
+        disruptor.setDefaultExceptionHandler(new UploadExceptionHandler());
         EventHandlerGroup<TradeTransaction> handlerGroup=disruptor.handleEventsWith(new TradeTransactionVasConsumer(),new TradeTransactionInDBHandler());  
           
         TradeTransactionJMSNotifyHandler jmsConsumer=new TradeTransactionJMSNotifyHandler();  

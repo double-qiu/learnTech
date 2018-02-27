@@ -11,6 +11,6 @@ public class TradeTransactionVasConsumer implements EventHandler<TradeTransactio
     public void onEvent(TradeTransaction event, long sequence,  
             boolean endOfBatch) throws Exception {  
         //do something....  
+    		throw new RuntimeException("TradeTransactionVasConsumer");
     }  
-      
 }

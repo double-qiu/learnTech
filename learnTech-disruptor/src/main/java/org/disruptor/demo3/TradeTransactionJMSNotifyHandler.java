@@ -11,5 +11,6 @@ public class TradeTransactionJMSNotifyHandler implements EventHandler<TradeTrans
     public void onEvent(TradeTransaction event, long sequence,  
             boolean endOfBatch) throws Exception {  
         //do send jms message  
+    	System.out.println("TradeTransactionJMSNotifyHandler");
     }  
 } 
