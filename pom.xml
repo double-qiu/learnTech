@@ -11,12 +11,14 @@
   <url>http://maven.apache.org</url>
 
  <modules>
+    <module>learnTech-akka</module>
  	<module>learnTech-interview</module>
     <module>learnTech-axonframework</module>
     <module>learnTech-forkJoin</module>
     <module>learnTech-spring-batch</module>
     <module>learnTech-disruptor</module>
     <module>learnTech-elastic-job</module>
+    <module>learnTech-akka</module>
  </modules>
  
   <properties>
