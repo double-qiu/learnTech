@@ -3,7 +3,7 @@ package org.akka.demo5.model;
 import java.io.Serializable;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/26 14:33
  */

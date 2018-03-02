@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 打招呼的人
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/6 21:41
  */

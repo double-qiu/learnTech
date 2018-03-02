@@ -12,7 +12,7 @@ import com.typesafe.config.ConfigFactory;
 import scala.concurrent.duration.Duration;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/6 21:39
  */

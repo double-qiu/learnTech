@@ -11,7 +11,7 @@ import akka.actor.UntypedActor;
 import akka.routing.RoundRobinPool;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/26 14:31
  */

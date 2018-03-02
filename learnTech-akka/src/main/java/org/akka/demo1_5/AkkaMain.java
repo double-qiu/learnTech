@@ -15,7 +15,7 @@ import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/24 13:57
  */

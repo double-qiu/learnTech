@@ -7,7 +7,7 @@ import akka.dispatch.UnboundedPriorityMailbox;
 import com.typesafe.config.Config;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/7 13:32
  */

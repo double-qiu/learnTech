@@ -13,7 +13,7 @@ import org.akka.demo2.server.actor.WCMapReduceActor;
 import com.typesafe.config.ConfigFactory;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/7 10:43
  */

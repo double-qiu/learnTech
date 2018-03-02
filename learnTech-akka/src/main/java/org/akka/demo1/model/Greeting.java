@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 招呼体,里面有打的什么招呼
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/6 21:44
  */

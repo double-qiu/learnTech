@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import akka.actor.UntypedActor;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/26 14:30
  */

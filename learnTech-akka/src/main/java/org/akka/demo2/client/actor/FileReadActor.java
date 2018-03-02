@@ -9,7 +9,7 @@ import akka.actor.UntypedActor;
 /**
  * 从文件里面获取出行数
  *
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/6 22:25
  */

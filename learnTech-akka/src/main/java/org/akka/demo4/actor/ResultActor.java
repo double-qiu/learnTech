@@ -3,7 +3,7 @@ package org.akka.demo4.actor;
 import akka.actor.UntypedActor;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/7 20:34
  */

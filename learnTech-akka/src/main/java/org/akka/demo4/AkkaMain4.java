@@ -20,7 +20,7 @@ import static akka.pattern.Patterns.ask;
 import static akka.pattern.Patterns.pipe;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/7 20:26
  */

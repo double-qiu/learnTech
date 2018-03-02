@@ -5,7 +5,7 @@ import java.util.UUID;
 import akka.actor.UntypedActor;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/7 20:27
  */

@@ -5,7 +5,7 @@ import akka.japi.Option;
 import scala.concurrent.Future;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/24 13:55
  */

@@ -8,7 +8,7 @@ import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/6 22:35
  */

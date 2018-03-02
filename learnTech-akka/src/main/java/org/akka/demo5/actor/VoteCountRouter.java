@@ -5,7 +5,7 @@ import akka.routing.CustomRouterConfig;
 import akka.routing.Router;
 
 /**
- * @author SUN
+ * @author DOUBLE
  * @version 1.0
  * @Date 16/1/27 10:30
  */
