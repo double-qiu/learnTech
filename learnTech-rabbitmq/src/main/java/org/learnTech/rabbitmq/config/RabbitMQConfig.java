@@ -1,4 +1,7 @@
 package org.learnTech.rabbitmq.config;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -26,7 +29,12 @@ public class RabbitMQConfig {
     public static final String ROUTINGKEY1 = "queue_one_key1";
     /** 队列key2*/
     public static final String ROUTINGKEY2 = "queue_one_key2";
-
+    /** 私信任务队列 **/
+    public static final String DEAD_QUEUE_NAME = "queue_dead";
+    /** 任务队列 **/
+    public static final String QUEUE_NAME_1= "queue_one_1";
+    /** 任务队列1 **/
+    public static final String QUEUE_NAME_2 = "queue_one_2";
     /**
      * 配置链接信息
      * @return
@@ -35,8 +43,8 @@ public class RabbitMQConfig {
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory("127.0.0.1",5672);
         
-        connectionFactory.setUsername("springboot");
-        connectionFactory.setPassword("password");
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("123456");
         connectionFactory.setVirtualHost("/");
         connectionFactory.setPublisherConfirms(true); // 必须要设置
         return connectionFactory;
@@ -60,9 +68,23 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean  
-    public Queue queue() {  
-       return new Queue("queue_one", true); //队列持久  
-  
+    public Queue queue1() {  
+    	final Map<String, Object> arguments = new HashMap<>();
+    	arguments.put("x-dead-letter-exchange", "");//使用默认交换机作为私信队列交换机
+    	arguments.put("x-dead-letter-routing-key", DEAD_QUEUE_NAME);
+    	return new Queue(QUEUE_NAME_1, true, false, false, arguments);//队列持久  
+    }
+    /**
+     * 死信队列
+     * 当统计任务队列发送异常时，消息进入死信队列
+     *
+     * @return queue deadQueue
+     */
+    @Bean("deadQueue")
+    public Queue deadLetterQueue() {
+        final Map<String, Object> arguments = new HashMap<>();
+        arguments.put("x-queue-mode", "lazy");
+        return new Queue(DEAD_QUEUE_NAME, true, false, false, arguments);
     }
     /**
      * 将消息队列1与交换机绑定
@@ -70,8 +92,8 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean  
-    public Binding binding() {  
-        return BindingBuilder.bind(queue()).to(defaultExchange()).with(RabbitMQConfig.ROUTINGKEY1);  
+    public Binding binding1() {  
+        return BindingBuilder.bind(queue1()).to(defaultExchange()).with(RabbitMQConfig.ROUTINGKEY1);  
     } 
     
     /**
@@ -80,9 +102,11 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean  
-    public Queue queue1() {  
-       return new Queue("queue_one1", true); //队列持久  
-  
+    public Queue queue2() {  
+    	final Map<String, Object> arguments = new HashMap<>();
+    	arguments.put("x-dead-letter-exchange", "");//使用默认交换机作为私信队列交换机
+    	arguments.put("x-dead-letter-routing-key", DEAD_QUEUE_NAME);
+    	return new Queue(QUEUE_NAME_2, true, false, false, arguments);//队列持久  
     }
     /**
      * 将消息队列2与交换机绑定
@@ -90,18 +114,18 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean  
-    public Binding binding1() {  
-        return BindingBuilder.bind(queue1()).to(defaultExchange()).with(RabbitMQConfig.ROUTINGKEY2);  
+    public Binding binding2() {  
+        return BindingBuilder.bind(queue2()).to(defaultExchange()).with(RabbitMQConfig.ROUTINGKEY2);  
     } 
     /**
      * 接受消息的监听，这个监听会接受消息队列1的消息
      * 针对消费者配置  
      * @return
      */
-    @Bean  
+    //@Bean  
     public SimpleMessageListenerContainer messageContainer() {  
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());  
-        container.setQueues(queue());  
+        container.setQueues(queue1());  
         container.setExposeListenerChannel(true);  
         container.setMaxConcurrentConsumers(1);  
         container.setConcurrentConsumers(1);  
@@ -123,10 +147,10 @@ public class RabbitMQConfig {
      * 针对消费者配置  
      * @return
      */
-    @Bean  
+    //@Bean  
     public SimpleMessageListenerContainer messageContainer2() {  
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());  
-        container.setQueues(queue1());  
+        container.setQueues(queue2());  
         container.setExposeListenerChannel(true);  
         container.setMaxConcurrentConsumers(1);  
         container.setConcurrentConsumers(1);  
