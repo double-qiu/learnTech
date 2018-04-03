@@ -117,12 +117,23 @@ public class RabbitMQConfig {
     public Binding binding2() {  
         return BindingBuilder.bind(queue2()).to(defaultExchange()).with(RabbitMQConfig.ROUTINGKEY2);  
     } 
+    
+    @Bean
+    public Binding bindingDead1() {
+        return BindingBuilder.bind(deadLetterQueue()).to(defaultExchange())
+        .with(RabbitMQConfig.ROUTINGKEY1);
+    }
+    @Bean
+    public Binding bindingDead2() {
+        return BindingBuilder.bind(deadLetterQueue()).to(defaultExchange())
+        .with(RabbitMQConfig.ROUTINGKEY2);
+    }
     /**
      * 接受消息的监听，这个监听会接受消息队列1的消息
      * 针对消费者配置  
      * @return
      */
-    //@Bean  
+    @Bean  
     public SimpleMessageListenerContainer messageContainer() {  
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());  
         container.setQueues(queue1());  
@@ -135,8 +146,8 @@ public class RabbitMQConfig {
             public void onMessage(Message message, com.rabbitmq.client.Channel channel) throws Exception {
                 byte[] body = message.getBody();  
                 System.out.println("收到消息 : " + new String(body));  
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费  
-                
+//                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费  
+                channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);//拒绝消息
             }  
   
         });  
@@ -147,7 +158,7 @@ public class RabbitMQConfig {
      * 针对消费者配置  
      * @return
      */
-    //@Bean  
+    @Bean  
     public SimpleMessageListenerContainer messageContainer2() {  
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());  
         container.setQueues(queue2());  
@@ -156,7 +167,6 @@ public class RabbitMQConfig {
         container.setConcurrentConsumers(1);  
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认  
         container.setMessageListener(new ChannelAwareMessageListener() {
-
             public void onMessage(Message message, com.rabbitmq.client.Channel channel) throws Exception {
                 byte[] body = message.getBody();  
                 System.out.println("queue1 收到消息 : " + new String(body));  
