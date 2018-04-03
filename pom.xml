@@ -21,6 +21,7 @@
     <module>learnTech-akka</module>
     <module>learnTech-kafka</module>
     <module>learnTech-rabbitmq</module>
+    <module>learnTech-elasticsearch</module>
  </modules>
  <parent>
 		<groupId>org.springframework.boot</groupId>
